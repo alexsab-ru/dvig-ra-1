@@ -1,0 +1,559 @@
+<html lang="ru" vid="0"><head vid="1">
+    <meta charset="UTF-8" vid="2">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" vid="3">
+    <title vid="4">Движение - Рекламно-производственная компания</title>
+    <script src="https://cdn.tailwindcss.com/3.4.17" vid="5"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet" vid="6">
+    <script src="https://unpkg.com/lucide@latest" vid="7"></script>
+    <style vid="8">
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: #2B2A28;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #ED6F17);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #ED6F17, #801D81, #432483);
+        }
+        .gradient-border-hover:hover {
+            border-image: linear-gradient(to right, #ED6F17, #801D81) 1;
+        }
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+        }
+        
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #432483;
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #801D81;
+        }
+    </style>
+</head>
+<body class="bg-white overflow-x-hidden w-full min-h-screen flex flex-col" vid="9">
+
+    
+    <nav class="fixed w-full z-50 glass-header shadow-sm border-b border-gray-100" vid="10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" vid="11">
+            <div class="flex justify-between items-center h-20" vid="12">
+                <div class="flex items-center gap-3" vid="13">
+                    
+                    <div class="w-10 h-10 relative" vid="14">
+                        <svg viewBox="0 0 100 100" class="w-full h-full drop-shadow-md" vid="15">
+                            <defs vid="16">
+                                <linearGradient id="logoGradient" x1="0%" y1="100%" x2="100%" y2="0%" vid="17">
+                                    <stop offset="0%" style="stop-color:#ED6F17;stop-opacity:1" vid="18"></stop>
+                                    <stop offset="50%" style="stop-color:#801D81;stop-opacity:1" vid="19"></stop>
+                                    <stop offset="100%" style="stop-color:#68C9F3;stop-opacity:1" vid="20"></stop>
+                                </linearGradient>
+                            </defs>
+                            <path d="M15,90 C15,90 40,20 60,10 C80,0 95,20 95,20 C95,20 70,50 45,60 C20,70 15,90 15,90 Z" fill="url(#logoGradient)" vid="21"></path>
+                            <path d="M25,85 C25,85 45,35 60,25" stroke="white" stroke-width="2" fill="none" opacity="0.3" vid="22"></path>
+                        </svg>
+                    </div>
+                    <span class="text-2xl font-extrabold tracking-tight text-[#432483] uppercase" vid="23">Движение</span>
+                </div>
+                
+                <div class="hidden lg:flex space-x-10 items-center" vid="24">
+                    <a href="#" class="text-[#2B2A28] hover:text-[#ED6F17] transition-colors font-semibold text-sm uppercase tracking-wide" vid="25">Компания</a>
+                    <a href="#services" class="text-[#2B2A28] hover:text-[#ED6F17] transition-colors font-semibold text-sm uppercase tracking-wide" vid="26">Услуги</a>
+                    <a href="#portfolio" class="text-[#2B2A28] hover:text-[#ED6F17] transition-colors font-semibold text-sm uppercase tracking-wide" vid="27">Портфолио</a>
+                    <a href="#contacts" class="text-[#2B2A28] hover:text-[#ED6F17] transition-colors font-semibold text-sm uppercase tracking-wide" vid="28">Контакты</a>
+                </div>
+
+                <button class="hidden md:flex px-6 py-2.5 rounded-full bg-[#432483] text-white hover:bg-[#801D81] transition-all duration-300 shadow-lg shadow-[#432483]/30 font-semibold items-center gap-2 group" vid="29">
+                    <span vid="30">Связаться</span>
+                    <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform" vid="31"></i>
+                </button>
+                
+                
+                <button class="lg:hidden text-[#2B2A28]" vid="32">
+                    <i data-lucide="menu" class="w-8 h-8" vid="33"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    
+    <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gray-50" vid="34">
+        
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-[800px] h-[800px] rounded-full bg-[#95D4E7] opacity-40 blur-[100px]" vid="35"></div>
+        <div class="absolute bottom-0 left-0 -ml-40 -mb-20 w-[600px] h-[600px] rounded-full bg-[#462483] opacity-30 blur-[120px]" vid="36"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-white opacity-40 blur-3xl rounded-full" vid="37"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" vid="38">
+            <div class="grid lg:grid-cols-2 gap-16 items-center" vid="39">
+                <div class="space-y-8 animate-fade-in-up" vid="40">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white border border-gray-200 shadow-sm text-sm font-semibold text-[#801D81]" vid="41">
+                        <span class="w-2 h-2 rounded-full bg-[#ED6F17]" vid="42"></span>
+                        Рекламно-производственная компания
+                    </div>
+                    <h1 class="text-5xl lg:text-7xl font-extrabold leading-tight text-[#2B2A28]" vid="43">
+                        Придаем <span class="gradient-text" vid="44">динамику</span> вашему бренду
+                    </h1>
+                    <p class="text-xl text-gray-600 max-w-lg leading-relaxed" vid="45">
+                        Комплексные решения для бизнеса: от разработки логотипа до широкоформатной печати и наружной рекламы.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 pt-4" vid="46">
+                        <button class="px-8 py-4 rounded-xl gradient-bg text-white font-bold text-lg hover:shadow-xl hover:shadow-[#ED6F17]/30 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2" vid="47">
+                            Рассчитать проект
+                        </button>
+                        <button class="px-8 py-4 rounded-xl bg-white border-2 border-gray-100 text-[#432483] font-bold text-lg hover:border-[#432483] hover:bg-gray-50 transition-all flex items-center justify-center gap-2" vid="48">
+                            <i data-lucide="download" class="w-5 h-5" vid="49"></i>
+                            Презентация
+                        </button>
+                    </div>
+                    <div class="flex items-center gap-8 pt-8 border-t border-gray-200/50" vid="50">
+                        <div vid="51">
+                            <p class="text-3xl font-bold text-[#2B2A28]" vid="52">10+</p>
+                            <p class="text-sm text-gray-500 font-medium" vid="53">Лет опыта</p>
+                        </div>
+                        <div class="w-px h-10 bg-gray-300" vid="54"></div>
+                        <div vid="55">
+                            <p class="text-3xl font-bold text-[#2B2A28]" vid="56">500+</p>
+                            <p class="text-sm text-gray-500 font-medium" vid="57">Клиентов</p>
+                        </div>
+                        <div class="w-px h-10 bg-gray-300" vid="58"></div>
+                        <div vid="59">
+                            <p class="text-3xl font-bold text-[#2B2A28]" vid="60">24/7</p>
+                            <p class="text-sm text-gray-500 font-medium" vid="61">Поддержка</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative lg:h-[600px] flex items-center justify-center" vid="62">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-[#ED6F17] via-[#801D81] to-[#68C9F3] rounded-[3rem] transform rotate-6 opacity-10 blur-xl" vid="63"></div>
+                    <div class="relative w-full h-full rounded-[2rem] overflow-hidden shadow-2xl group" vid="64">
+                         <img src="https://images.unsplash.com/photo-1736667117808-d8e33a51cd7f?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1350&amp;q=80" alt="Production Process" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" vid="65">
+                         <div class="absolute inset-0 bg-gradient-to-t from-[#432483]/80 via-transparent to-transparent" vid="66"></div>
+                         <div class="absolute top-8 left-8 right-8 text-white" vid="67">
+                             <div class="flex items-center gap-3 mb-2" vid="68">
+                                 <div class="p-2 bg-[#ED6F17] rounded-lg" vid="69">
+                                     <i data-lucide="printer" class="w-6 h-6 text-white" vid="70"></i>
+                                 </div>
+                                 <span class="font-bold text-lg" vid="71">Собственное производство</span>
+                             </div>
+                             <p class="text-white/80 text-sm" vid="72">Контроль качества на каждом этапе изготовления продукции</p>
+                         </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl max-w-xs animate-bounce" style="animation-duration: 3s;" vid="73">
+                        <div class="flex items-center gap-4" vid="74">
+                            <div class="w-12 h-12 rounded-full bg-green-100 flex items-center justify-center text-green-600" vid="75">
+                                <i data-lucide="check-circle" class="w-6 h-6" vid="76"></i>
+                            </div>
+                            <div vid="77">
+                                <p class="font-bold text-[#2B2A28]" vid="78">Заказ готов</p>
+                                <p class="text-xs text-gray-500" vid="79">Ваш тираж отпечатан и готов к отгрузке</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    
+    <section id="services" class="py-24 bg-white relative" vid="80">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" vid="81">
+            <div class="text-center mb-16" vid="82">
+                <h2 class="text-4xl font-extrabold text-[#2B2A28] mb-4" vid="83">Наши услуги</h2>
+                <div class="w-20 h-1.5 gradient-bg mx-auto rounded-full" vid="84"></div>
+                <p class="mt-6 text-xl text-gray-600 max-w-2xl mx-auto" vid="85">Мы предлагаем полный спектр услуг для визуализации вашего успеха</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" vid="86">
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#68C9F3]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="87">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#68C9F3] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="88"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#68C9F3]/10 text-[#68C9F3] flex items-center justify-center mb-6 group-hover:bg-[#68C9F3] group-hover:text-white transition-colors duration-300" vid="89">
+                        <i data-lucide="book-open" class="w-7 h-7" vid="90"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="91">Брендбуки</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="92">Разработка единого стиля компании, руководство по использованию фирменных элементов.</p>
+                    <a href="#" class="inline-flex items-center text-[#68C9F3] font-semibold text-sm hover:translate-x-1 transition-transform" vid="93">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="94"></i></a>
+                </div>
+
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#801D81]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="95">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#801D81] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="96"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#801D81]/10 text-[#801D81] flex items-center justify-center mb-6 group-hover:bg-[#801D81] group-hover:text-white transition-colors duration-300" vid="97">
+                        <i data-lucide="pen-tool" class="w-7 h-7" vid="98"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="99">Дизайн</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="100">Креативный графический дизайн любой сложности. От визитки до билборда.</p>
+                    <a href="#" class="inline-flex items-center text-[#801D81] font-semibold text-sm hover:translate-x-1 transition-transform" vid="101">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="102"></i></a>
+                </div>
+
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#ED6F17]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="103">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#ED6F17] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="104"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#ED6F17]/10 text-[#ED6F17] flex items-center justify-center mb-6 group-hover:bg-[#ED6F17] group-hover:text-white transition-colors duration-300" vid="105">
+                        <i data-lucide="layout" class="w-7 h-7" vid="106"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="107">Верстка</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="108">Профессиональная верстка каталогов, журналов, газет и книг.</p>
+                    <a href="#" class="inline-flex items-center text-[#ED6F17] font-semibold text-sm hover:translate-x-1 transition-transform" vid="109">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="110"></i></a>
+                </div>
+
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#432483]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="111">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#432483] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="112"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#432483]/10 text-[#432483] flex items-center justify-center mb-6 group-hover:bg-[#432483] group-hover:text-white transition-colors duration-300" vid="113">
+                        <i data-lucide="printer" class="w-7 h-7" vid="114"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="115">Печать</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="116">Цифровая и офсетная печать. Высокое качество цветопередачи и материалов.</p>
+                    <a href="#" class="inline-flex items-center text-[#432483] font-semibold text-sm hover:translate-x-1 transition-transform" vid="117">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="118"></i></a>
+                </div>
+
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#432483]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="119">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#432483] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="120"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#432483]/10 text-[#432483] flex items-center justify-center mb-6 group-hover:bg-[#432483] group-hover:text-white transition-colors duration-300" vid="121">
+                        <i data-lucide="image" class="w-7 h-7" vid="122"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="123">Интерьерная печать</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="124">Фотообои, холсты, постеры. Экологичные чернила и высокое разрешение.</p>
+                    <a href="#" class="inline-flex items-center text-[#432483] font-semibold text-sm hover:translate-x-1 transition-transform" vid="125">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="126"></i></a>
+                </div>
+
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#ED6F17]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="127">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#ED6F17] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="128"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#ED6F17]/10 text-[#ED6F17] flex items-center justify-center mb-6 group-hover:bg-[#ED6F17] group-hover:text-white transition-colors duration-300" vid="129">
+                        <i data-lucide="signpost" class="w-7 h-7" vid="130"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="131">Штендеры</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="132">Мобильные рекламные конструкции для привлечения внимания на улице.</p>
+                    <a href="#" class="inline-flex items-center text-[#ED6F17] font-semibold text-sm hover:translate-x-1 transition-transform" vid="133">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="134"></i></a>
+                </div>
+
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#801D81]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="135">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#801D81] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="136"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#801D81]/10 text-[#801D81] flex items-center justify-center mb-6 group-hover:bg-[#801D81] group-hover:text-white transition-colors duration-300" vid="137">
+                        <i data-lucide="calendar" class="w-7 h-7" vid="138"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="139">Календари</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="140">Корпоративные календари на любой вкус: квартальные, настольные, карманные.</p>
+                    <a href="#" class="inline-flex items-center text-[#801D81] font-semibold text-sm hover:translate-x-1 transition-transform" vid="141">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="142"></i></a>
+                </div>
+
+                
+                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl hover:shadow-[#68C9F3]/10 border border-transparent hover:border-gray-100 relative overflow-hidden" vid="143">
+                    <div class="absolute top-0 right-0 w-24 h-24 bg-[#68C9F3] opacity-5 rounded-bl-full transition-all group-hover:scale-150" vid="144"></div>
+                    <div class="w-14 h-14 rounded-2xl bg-[#68C9F3]/10 text-[#68C9F3] flex items-center justify-center mb-6 group-hover:bg-[#68C9F3] group-hover:text-white transition-colors duration-300" vid="145">
+                        <i data-lucide="hexagon" class="w-7 h-7" vid="146"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]" vid="147">Логотипы</h3>
+                    <p class="text-sm text-gray-500 leading-relaxed mb-4" vid="148">Создание уникального знака, который станет лицом вашего бизнеса.</p>
+                    <a href="#" class="inline-flex items-center text-[#68C9F3] font-semibold text-sm hover:translate-x-1 transition-transform" vid="149">Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1" vid="150"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="portfolio" class="py-24 bg-[#F8FAFC]" vid="151">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" vid="152">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4" vid="153">
+                <div vid="154">
+                    <span class="text-[#ED6F17] font-bold tracking-wider uppercase text-sm mb-2 block" vid="155">Наши работы</span>
+                    <h2 class="text-4xl font-extrabold text-[#2B2A28]" vid="156">Последние проекты</h2>
+                </div>
+                <div class="flex gap-2 overflow-x-hidden" vid="157">
+                    <button class="px-4 py-2 rounded-full bg-[#432483] text-white text-sm font-medium" vid="158">Все</button>
+                    <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-50" vid="159">Брендинг</button>
+                    <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-50" vid="160">Полиграфия</button>
+                    <button class="px-4 py-2 rounded-full bg-white border border-gray-200 text-gray-600 text-sm font-medium hover:bg-gray-50" vid="161">Наружка</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" vid="162">
+                
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg aspect-[4/3]" vid="163">
+                    <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Brand Identity" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" vid="164">
+                    <div class="absolute inset-0 bg-[#2B2A28]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" vid="165">
+                        <div class="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300" vid="166">
+                            <h3 class="text-white text-2xl font-bold mb-2" vid="167">Techno Spark</h3>
+                            <p class="text-[#68C9F3] font-medium" vid="168">Ребрендинг компании</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg aspect-[4/3]" vid="169">
+                    <img src="https://images.unsplash.com/photo-1556943418-0e5712249b9d?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Brochure Design" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" vid="170">
+                    <div class="absolute inset-0 bg-[#2B2A28]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" vid="171">
+                        <div class="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300" vid="172">
+                            <h3 class="text-white text-2xl font-bold mb-2" vid="173">Green Life</h3>
+                            <p class="text-[#ED6F17] font-medium" vid="174">Каталог продукции</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg aspect-[4/3]" vid="175">
+                    <img src="https://images.unsplash.com/photo-1542744095-291d1f67b221?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Office Branding" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" vid="176">
+                    <div class="absolute inset-0 bg-[#2B2A28]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" vid="177">
+                        <div class="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300" vid="178">
+                            <h3 class="text-white text-2xl font-bold mb-2" vid="179">StartUp Hub</h3>
+                            <p class="text-[#801D81] font-medium" vid="180">Оформление офиса</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg aspect-[4/3] lg:col-span-2" vid="181">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1600&amp;q=80" alt="Conference Materials" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" vid="182">
+                    <div class="absolute inset-0 bg-[#2B2A28]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" vid="183">
+                        <div class="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300" vid="184">
+                            <h3 class="text-white text-2xl font-bold mb-2" vid="185">Tech Summit 2024</h3>
+                            <p class="text-[#95D4E7] font-medium" vid="186">Полное сопровождение мероприятия</p>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg aspect-[4/3]" vid="187">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-1.2.1&amp;auto=format&amp;fit=crop&amp;w=1000&amp;q=80" alt="Mobile App Design" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" vid="188">
+                    <div class="absolute inset-0 bg-[#2B2A28]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center" vid="189">
+                        <div class="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300" vid="190">
+                            <h3 class="text-white text-2xl font-bold mb-2" vid="191">Finance App</h3>
+                            <p class="text-[#432483] font-medium" vid="192">UI/UX Дизайн</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-center" vid="193">
+                <button class="inline-flex items-center gap-2 px-8 py-3 rounded-full border-2 border-[#432483] text-[#432483] font-bold hover:bg-[#432483] hover:text-white transition-all duration-300" vid="194">
+                    Посмотреть всё портфолио
+                    <i data-lucide="arrow-right" class="w-5 h-5" vid="195"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="py-20 bg-[#2B2A28] text-white relative overflow-hidden" vid="196">
+        <div class="absolute inset-0 overflow-hidden" vid="197">
+            <div class="absolute -right-20 -top-40 w-96 h-96 bg-[#801D81] rounded-full blur-[128px] opacity-40" vid="198"></div>
+            <div class="absolute -left-20 -bottom-40 w-96 h-96 bg-[#ED6F17] rounded-full blur-[128px] opacity-30" vid="199"></div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" vid="200">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 text-center md:text-left" vid="201">
+                <div class="space-y-4" vid="202">
+                    <div class="w-12 h-12 bg-[#68C9F3]/20 rounded-xl flex items-center justify-center text-[#68C9F3]" vid="203">
+                        <i data-lucide="clock" class="w-6 h-6" vid="204"></i>
+                    </div>
+                    <h3 class="text-xl font-bold" vid="205">Соблюдение сроков</h3>
+                    <p class="text-gray-400 text-sm" vid="206">Мы ценим ваше время, поэтому всегда сдаем проекты точно в оговоренный срок.</p>
+                </div>
+                <div class="space-y-4" vid="207">
+                    <div class="w-12 h-12 bg-[#ED6F17]/20 rounded-xl flex items-center justify-center text-[#ED6F17]" vid="208">
+                        <i data-lucide="award" class="w-6 h-6" vid="209"></i>
+                    </div>
+                    <h3 class="text-xl font-bold" vid="210">Высокое качество</h3>
+                    <p class="text-gray-400 text-sm" vid="211">Используем только лучшие материалы и современное оборудование.</p>
+                </div>
+                <div class="space-y-4" vid="212">
+                    <div class="w-12 h-12 bg-[#801D81]/20 rounded-xl flex items-center justify-center text-[#801D81]" vid="213">
+                        <i data-lucide="users" class="w-6 h-6" vid="214"></i>
+                    </div>
+                    <h3 class="text-xl font-bold" vid="215">Команда профи</h3>
+                    <p class="text-gray-400 text-sm" vid="216">Дизайнеры, верстальщики и печатники с опытом работы более 5 лет.</p>
+                </div>
+                <div class="space-y-4" vid="217">
+                    <div class="w-12 h-12 bg-[#432483]/20 rounded-xl flex items-center justify-center text-[#95D4E7]" vid="218">
+                        <i data-lucide="zap" class="w-6 h-6" vid="219"></i>
+                    </div>
+                    <h3 class="text-xl font-bold" vid="220">Креативный подход</h3>
+                    <p class="text-gray-400 text-sm" vid="221">Не боимся смелых идей и нестандартных решений для вашего бизнеса.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section id="contacts" class="py-24 bg-white relative" vid="222">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" vid="223">
+            <div class="rounded-3xl bg-gray-50 overflow-hidden shadow-2xl flex flex-col lg:flex-row" vid="224">
+                
+                <div class="lg:w-1/2 p-12 lg:p-16 bg-[#432483] text-white relative overflow-hidden" vid="225">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-[#68C9F3] rounded-full blur-[80px] opacity-20 -translate-y-1/2 translate-x-1/2" vid="226"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#ED6F17] rounded-full blur-[80px] opacity-20 translate-y-1/2 -translate-x-1/2" vid="227"></div>
+                    
+                    <div class="relative z-10" vid="228">
+                        <h2 class="text-3xl font-bold mb-6" vid="229">Давайте обсудим ваш проект</h2>
+                        <p class="text-gray-300 mb-12" vid="230">Оставьте заявку, и наш менеджер свяжется с вами в течение 15 минут для уточнения деталей.</p>
+                        
+                        <div class="space-y-8" vid="231">
+                            <div class="flex items-start gap-4" vid="232">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0" vid="233">
+                                    <i data-lucide="map-pin" class="w-5 h-5 text-[#68C9F3]" vid="234"></i>
+                                </div>
+                                <div vid="235">
+                                    <h4 class="font-bold mb-1" vid="236">Наш офис</h4>
+                                    <p class="text-gray-300 text-sm" vid="237">г. Москва, ул. Производственная, д. 15, корп. 3</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start gap-4" vid="238">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0" vid="239">
+                                    <i data-lucide="phone" class="w-5 h-5 text-[#68C9F3]" vid="240"></i>
+                                </div>
+                                <div vid="241">
+                                    <h4 class="font-bold mb-1" vid="242">Телефон</h4>
+                                    <p class="text-gray-300 text-sm" vid="243">+7 (999) 123-45-67</p>
+                                    <p class="text-gray-400 text-xs mt-1" vid="244">Пн-Пт с 9:00 до 19:00</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-4" vid="245">
+                                <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0" vid="246">
+                                    <i data-lucide="mail" class="w-5 h-5 text-[#68C9F3]" vid="247"></i>
+                                </div>
+                                <div vid="248">
+                                    <h4 class="font-bold mb-1" vid="249">Email</h4>
+                                    <p class="text-gray-300 text-sm" vid="250">zakaz@dvizhenie.ru</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-16 pt-8 border-t border-white/10" vid="251">
+                            <h4 class="font-bold mb-4" vid="252">Мы в соцсетях</h4>
+                            <div class="flex gap-4" vid="253">
+                                <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#68C9F3] hover:text-[#432483] transition-all flex items-center justify-center" vid="254">
+                                    <i data-lucide="instagram" class="w-5 h-5" vid="255"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#0088cc] hover:text-white transition-all flex items-center justify-center" vid="256">
+                                    <i data-lucide="send" class="w-5 h-5" vid="257"></i>
+                                </a>
+                                <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#25D366] hover:text-white transition-all flex items-center justify-center" vid="258">
+                                    <i data-lucide="message-circle" class="w-5 h-5" vid="259"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+                <div class="lg:w-1/2 p-12 lg:p-16 bg-white" vid="260">
+                    <form class="space-y-6" vid="261">
+                        <div class="grid grid-cols-2 gap-6" vid="262">
+                            <div class="col-span-2 sm:col-span-1" vid="263">
+                                <label class="block text-sm font-bold text-[#2B2A28] mb-2" vid="264">Ваше имя</label>
+                                <input type="text" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all" placeholder="Иван Иванов" vid="265">
+                            </div>
+                            <div class="col-span-2 sm:col-span-1" vid="266">
+                                <label class="block text-sm font-bold text-[#2B2A28] mb-2" vid="267">Телефон</label>
+                                <input type="tel" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all" placeholder="+7 (___) ___-__-__" vid="268">
+                            </div>
+                        </div>
+
+                        <div vid="269">
+                            <label class="block text-sm font-bold text-[#2B2A28] mb-2" vid="270">Интересующая услуга</label>
+                            <select class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all text-gray-600" vid="271">
+                                <option vid="272">Выберите услугу</option>
+                                <option vid="273">Брендбуки и Дизайн</option>
+                                <option vid="274">Полиграфия и Печать</option>
+                                <option vid="275">Наружная реклама</option>
+                                <option vid="276">Сувенирная продукция</option>
+                                <option vid="277">Другое</option>
+                            </select>
+                        </div>
+
+                        <div vid="278">
+                            <label class="block text-sm font-bold text-[#2B2A28] mb-2" vid="279">Комментарий</label>
+                            <textarea rows="4" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all resize-none" placeholder="Опишите кратко вашу задачу..." vid="280"></textarea>
+                        </div>
+
+                        <div class="pt-4" vid="281">
+                            <button type="submit" class="w-full py-4 rounded-xl gradient-bg text-white font-bold text-lg hover:shadow-xl hover:shadow-[#ED6F17]/20 transition-all transform hover:-translate-y-1" vid="282">
+                                Отправить заявку
+                            </button>
+                            <p class="text-center text-xs text-gray-400 mt-4" vid="283">Нажимая кнопку, вы соглашаетесь с Политикой конфиденциальности</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <footer class="bg-white border-t border-gray-100 pt-16 pb-8" vid="284">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" vid="285">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12" vid="286">
+                <div class="col-span-2 md:col-span-1" vid="287">
+                     <div class="flex items-center gap-2 mb-6" vid="288">
+                        <div class="w-8 h-8 relative" vid="289">
+                            <svg viewBox="0 0 100 100" class="w-full h-full" vid="290">
+                                <path d="M15,90 C15,90 40,20 60,10 C80,0 95,20 95,20 C95,20 70,50 45,60 C20,70 15,90 15,90 Z" fill="#432483" vid="291"></path>
+                            </svg>
+                        </div>
+                        <span class="text-xl font-extrabold text-[#432483] uppercase" vid="292">Движение</span>
+                    </div>
+                    <p class="text-gray-500 text-sm leading-relaxed mb-6" vid="293">
+                        Профессиональная рекламно-производственная компания. Создаем будущее вашего бренда уже сегодня.
+                    </p>
+                </div>
+                
+                <div vid="294">
+                    <h4 class="font-bold text-[#2B2A28] mb-6" vid="295">Услуги</h4>
+                    <ul class="space-y-3 text-sm text-gray-500" vid="296">
+                        <li vid="297"><a href="#" class="hover:text-[#ED6F17] transition-colors" vid="298">Дизайн и Верстка</a></li>
+                        <li vid="299"><a href="#" class="hover:text-[#ED6F17] transition-colors" vid="300">Полиграфия</a></li>
+                        <li vid="301"><a href="#" class="hover:text-[#ED6F17] transition-colors" vid="302">Широкоформатная печать</a></li>
+                        <li vid="303"><a href="#" class="hover:text-[#ED6F17] transition-colors" vid="304">Сувенирная продукция</a></li>
+                        <li vid="305"><a href="#" class="hover:text-[#ED6F17] transition-colors" vid="306">Наружная реклама</a></li>
+                    </ul>
+                </div>
+
+                <div vid="307">
+                    <h4 class="font-bold text-[#2B2A28] mb-6" vid="308">Информация</h4>
+                    <ul class="space-y-3 text-sm text-gray-500" vid="309">
+                        <li vid="310"><a href="#" class="hover:text-[#801D81] transition-colors" vid="311">О компании</a></li>
+                        <li vid="312"><a href="#" class="hover:text-[#801D81] transition-colors" vid="313">Наши работы</a></li>
+                        <li vid="314"><a href="#" class="hover:text-[#801D81] transition-colors" vid="315">Требования к макетам</a></li>
+                        <li vid="316"><a href="#" class="hover:text-[#801D81] transition-colors" vid="317">Доставка и оплата</a></li>
+                        <li vid="318"><a href="#" class="hover:text-[#801D81] transition-colors" vid="319">Контакты</a></li>
+                    </ul>
+                </div>
+
+                <div vid="320">
+                    <h4 class="font-bold text-[#2B2A28] mb-6" vid="321">Документы</h4>
+                    <ul class="space-y-3 text-sm text-gray-500" vid="322">
+                        <li vid="323"><a href="#" class="hover:text-[#68C9F3] transition-colors" vid="324">Реквизиты</a></li>
+                        <li vid="325"><a href="#" class="hover:text-[#68C9F3] transition-colors" vid="326">Политика конфиденциальности</a></li>
+                        <li vid="327"><a href="#" class="hover:text-[#68C9F3] transition-colors" vid="328">Договор оферты</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4" vid="329">
+                <p class="text-gray-400 text-sm" vid="330">© 2024 РПК "Движение". Все права защищены.</p>
+                <div class="text-gray-400 text-sm" vid="331">Сделано с любовью к дизайну</div>
+            </div>
+        </div>
+    </footer>
+
+    <script vid="332">
+        lucide.createIcons();
+    </script>
+
+</body></html>
