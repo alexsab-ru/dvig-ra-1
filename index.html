@@ -77,13 +77,13 @@
         }
     </style>
 </head>
-<body class="bg-white overflow-x-hidden w-full min-h-screen flex flex-col" vid="9">
+<body id="top" class="bg-white overflow-x-hidden w-full min-h-screen flex flex-col" vid="9">
 
     
     <nav class="fixed w-full z-50 glass-header shadow-sm border-b border-gray-100" vid="10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" vid="11">
             <div class="flex justify-between items-center h-20" vid="12">
-                <div class="flex items-center gap-3" vid="13">
+                <a href="#top" class="flex items-center gap-3" vid="13">
                     
                     <div class="w-10 h-10 relative" vid="14">
                         <svg viewBox="0 0 339 344" class="w-full h-full drop-shadow-md" vid="15" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -107,7 +107,7 @@
                         </svg>
                     </div>
                     <span class="text-2xl font-extrabold tracking-tight text-[#432483] uppercase" vid="23">Движение</span>
-                </div>
+                </a>
                 
                 <div class="hidden lg:flex space-x-10 items-center" vid="24">
                     <a href="#" class="text-[#2B2A28] hover:text-[#ED6F17] transition-colors font-semibold text-sm uppercase tracking-wide" vid="25">Компания</a>
@@ -122,12 +122,29 @@
                 </a>
                 
                 
-                <button class="lg:hidden text-[#2B2A28]" vid="32">
-                    <i data-lucide="menu" class="w-8 h-8" vid="33"></i>
+                <button id="mobile-menu-toggle" type="button" aria-label="Открыть меню" aria-controls="mobile-menu-panel" aria-expanded="false" class="lg:hidden text-[#2B2A28]" vid="32">
+                    <i id="mobile-menu-open-icon" data-lucide="menu" class="w-8 h-8" vid="33"></i>
+                    <i id="mobile-menu-close-icon" data-lucide="x" class="w-8 h-8 hidden"></i>
                 </button>
             </div>
         </div>
     </nav>
+
+    <div id="mobile-menu-overlay" class="fixed inset-0 z-40 bg-black/30 opacity-0 pointer-events-none transition-opacity duration-300 lg:hidden"></div>
+    <aside id="mobile-menu-panel" class="fixed top-0 right-0 z-40 h-full w-[86%] max-w-sm border-l border-gray-100 bg-white shadow-2xl transform translate-x-full transition-transform duration-300 lg:hidden">
+        <div class="pt-24 px-8 pb-8 flex h-full flex-col">
+            <nav class="flex flex-col gap-6 text-[#2B2A28]">
+                <a data-mobile-menu-link href="#" class="text-base font-semibold uppercase tracking-wide hover:text-[#ED6F17] transition-colors">Компания</a>
+                <a data-mobile-menu-link href="#services" class="text-base font-semibold uppercase tracking-wide hover:text-[#ED6F17] transition-colors">Услуги</a>
+                <a data-mobile-menu-link href="#portfolio" class="text-base font-semibold uppercase tracking-wide hover:text-[#ED6F17] transition-colors">Портфолио</a>
+                <a data-mobile-menu-link href="#contacts" class="text-base font-semibold uppercase tracking-wide hover:text-[#ED6F17] transition-colors">Контакты</a>
+            </nav>
+            <a href="tel:+79892955166" class="mt-8 inline-flex w-fit items-center gap-2 rounded-full bg-[#432483] px-6 py-2.5 font-semibold text-white shadow-lg shadow-[#432483]/30 transition-all duration-300 hover:bg-[#801D81]">
+                <span>+7 (989) 295-51-66</span>
+                <i data-lucide="arrow-right" class="h-4 w-4"></i>
+            </a>
+        </div>
+    </aside>
 
     
     <header class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden bg-gray-50" vid="34">
@@ -615,6 +632,66 @@
 
     <script vid="332">
         lucide.createIcons();
+
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenuPanel = document.getElementById('mobile-menu-panel');
+        const mobileMenuOpenIcon = document.getElementById('mobile-menu-open-icon');
+        const mobileMenuCloseIcon = document.getElementById('mobile-menu-close-icon');
+        const mobileMenuLinks = document.querySelectorAll('[data-mobile-menu-link]');
+        let mobileMenuOpen = false;
+
+        const setMobileMenuState = (isOpen) => {
+            if (!mobileMenuToggle || !mobileMenuOverlay || !mobileMenuPanel || !mobileMenuOpenIcon || !mobileMenuCloseIcon) {
+                return;
+            }
+
+            mobileMenuOpen = isOpen;
+            mobileMenuToggle.setAttribute('aria-expanded', String(isOpen));
+
+            if (isOpen) {
+                mobileMenuOverlay.classList.remove('opacity-0', 'pointer-events-none');
+                mobileMenuOverlay.classList.add('opacity-100');
+                mobileMenuPanel.classList.remove('translate-x-full');
+                mobileMenuOpenIcon.classList.add('hidden');
+                mobileMenuCloseIcon.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            } else {
+                mobileMenuOverlay.classList.remove('opacity-100');
+                mobileMenuOverlay.classList.add('opacity-0', 'pointer-events-none');
+                mobileMenuPanel.classList.add('translate-x-full');
+                mobileMenuOpenIcon.classList.remove('hidden');
+                mobileMenuCloseIcon.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+        };
+
+        if (mobileMenuToggle) {
+            mobileMenuToggle.addEventListener('click', () => {
+                setMobileMenuState(!mobileMenuOpen);
+            });
+        }
+
+        if (mobileMenuOverlay) {
+            mobileMenuOverlay.addEventListener('click', () => {
+                setMobileMenuState(false);
+            });
+        }
+
+        mobileMenuLinks.forEach((link) => {
+            link.addEventListener('click', () => {
+                setMobileMenuState(false);
+            });
+        });
+
+        if (window.matchMedia) {
+            const desktopMediaQuery = window.matchMedia('(min-width: 1024px)');
+            desktopMediaQuery.addEventListener('change', (event) => {
+                if (event.matches) {
+                    setMobileMenuState(false);
+                }
+            });
+        }
 
         const contactForm = document.getElementById('contacts-form');
         const contactFormStatus = document.getElementById('contact-form-status');
