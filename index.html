@@ -637,9 +637,14 @@
                         contactFormStatus.textContent = 'Ваша заявка успешно отправлена';
                         contactFormStatus.className = 'mb-6 rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm font-medium text-green-700';
                         contactForm.reset();
+                    } else {
+                        contactFormStatus.textContent = 'Ошибка в отправке формы, попробуйте ещё раз';
+                        contactFormStatus.className = 'mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700';
                     }
                 } catch (error) {
                     console.error('Form submit error:', error);
+                    contactFormStatus.textContent = 'Ошибка в отправке формы, попробуйте ещё раз';
+                    contactFormStatus.className = 'mb-6 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700';
                 } finally {
                     if (submitButton) {
                         submitButton.disabled = false;
