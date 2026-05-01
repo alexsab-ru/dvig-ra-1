@@ -1,19 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import DeliveryHero from '../components/delivery/DeliveryHero.astro';
+import PageHero from '../components/PageHero.astro';
 import Delivery from '../components/delivery/Delivery.astro';
-import Requisites from '../components/delivery/Requisites.astro';
-import Requirements from '../components/delivery/Requirements.astro';
 import ContactsSection from '../components/ContactsSection.astro';
 ---
 <BaseLayout
-    title="Доставка, оплата и реквизиты — РПФ Движение"
-    description="Условия доставки и оплаты РПФ «Движение», реквизиты компании и требования к макетам для качественной печати."
+    title="Доставка и оплата — РПФ Движение"
+    description="Условия доставки и оплаты заказов РПФ «Движение» по Краснодару, Адыгее, Краснодарскому краю и всей России."
     canonical="https://dvig-ra.ru/delivery/"
 >
-    <!-- <DeliveryHero /> -->
-    <Delivery />
-    <Requisites />
-    <Requirements />
+    <PageHero eyebrow="Условия работы" title="Доставка и оплата" description="Рассказываем, как можно оплатить заказ и получить готовую рекламную продукцию в Краснодаре, Адыгее, по краю и в других регионах России." />
+    <Delivery showHeader={false} />
     <ContactsSection />
 </BaseLayout>

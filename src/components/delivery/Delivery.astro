@@ -1,11 +1,20 @@
+---
+interface Props {
+    showHeader?: boolean;
+}
+
+const { showHeader = true } = Astro.props;
+---
 <section id="delivery" class="py-24 bg-gray-50 relative overflow-hidden">
     <div class="absolute top-0 left-0 w-full h-32 bg-gradient-to-b from-white to-transparent"></div>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16">
-            <span class="text-[#68C9F3] font-bold tracking-wider uppercase text-sm mb-2 block">Условия работы</span>
-            <h2 class="text-4xl font-extrabold text-[#2B2A28] mb-4">Доставка и оплата</h2>
-            <div class="w-20 h-1.5 gradient-bg mx-auto rounded-full"></div>
-        </div>
+        {showHeader && (
+            <div class="text-center mb-16">
+                <span class="text-[#68C9F3] font-bold tracking-wider uppercase text-sm mb-2 block">Условия работы</span>
+                <h2 class="text-4xl font-extrabold text-[#2B2A28] mb-4">Доставка и оплата</h2>
+                <div class="w-20 h-1.5 gradient-bg mx-auto rounded-full"></div>
+            </div>
+        )}
 
         <div class="grid md:grid-cols-2 gap-8">
             <div class="p-8 rounded-3xl bg-white shadow-xl shadow-gray-200/50">

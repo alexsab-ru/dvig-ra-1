@@ -32,18 +32,26 @@ const cards = [
         items: ['Растрируйте эффекты', 'Без прозрачностей', 'Неразрушенные слои', 'Слои под обрезной'],
     },
 ];
+
+interface Props {
+    showHeader?: boolean;
+}
+
+const { showHeader = true } = Astro.props;
 ---
 <section id="requirements" class="py-24 bg-[#2B2A28] text-white relative overflow-hidden">
     <div class="absolute top-0 right-0 w-96 h-96 bg-[#432483] rounded-full blur-[150px] opacity-20"></div>
     <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#ED6F17] rounded-full blur-[150px] opacity-10"></div>
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div class="text-center mb-16">
-            <span class="text-[#68C9F3] font-bold tracking-wider uppercase text-sm mb-2 block">Для клиентов</span>
-            <h2 class="text-4xl font-extrabold mb-4">Требования к макетам</h2>
-            <p class="text-gray-400 max-w-2xl mx-auto">Подготовьте ваши файлы правильно для качественной печати</p>
-            <div class="w-20 h-1.5 bg-gradient-to-r from-[#ED6F17] via-[#801D81] to-[#68C9F3] mx-auto rounded-full mt-4"></div>
-        </div>
+        {showHeader && (
+            <div class="text-center mb-16">
+                <span class="text-[#68C9F3] font-bold tracking-wider uppercase text-sm mb-2 block">Для клиентов</span>
+                <h2 class="text-4xl font-extrabold mb-4">Требования к макетам</h2>
+                <p class="text-gray-400 max-w-2xl mx-auto">Подготовьте ваши файлы правильно для качественной печати</p>
+                <div class="w-20 h-1.5 bg-gradient-to-r from-[#ED6F17] via-[#801D81] to-[#68C9F3] mx-auto rounded-full mt-4"></div>
+            </div>
+        )}
 
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cards.map((card) => (
