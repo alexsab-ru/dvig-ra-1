@@ -176,7 +176,7 @@ const applyServicePresetFromLink = (link: Element) => {
     }
 };
 
-document.querySelectorAll('a[href="#contacts-form"]').forEach((anchor) => {
+document.querySelectorAll('[data-form-service]').forEach((anchor) => {
     anchor.addEventListener('click', () => {
         applyServicePresetFromLink(anchor);
     });

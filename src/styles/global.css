@@ -42,6 +42,17 @@ body {
     backdrop-filter: blur(12px);
 }
 
+.social-link:hover svg path,
+.max-social-link:hover svg path {
+    fill: #ffffff;
+}
+
+.max-social-link:hover {
+    background:
+        radial-gradient(48.5407px 20px at -0.951632px -17.5674px, #0000ff 0%, rgb(0 0 255 / 0) 100%),
+        linear-gradient(106deg, #44ccff 0%, #5533ee 66.2%, #9933dd 100%);
+}
+
 ::-webkit-scrollbar {
     width: 10px;
 }
