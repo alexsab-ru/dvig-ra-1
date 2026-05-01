@@ -1,0 +1,324 @@
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+# Sample workflow for building and deploying a Astro site to GitHub Pages
+name: Deploy website to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["astro"]
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      send_specials:
+        description: 'Отправить уведомление о датах окончания акций (TELEGRAM_TO_SPECIAL)'
+        required: false
+        type: boolean
+        default: false
+      send_specials_marketing:
+        description: 'Отправить уведомление о датах окончания акций — маркетинг (TELEGRAM_TO_SPECIAL_MARKETING)'
+        required: false
+        type: boolean
+        default: false
+      send_rassrochka:
+        description: 'Отправить уведомление о Рассрочке с путями к файлам (TELEGRAM_TO_SPECIAL)'
+        required: false
+        type: boolean
+        default: false
+      send_rassrochka_marketing:
+        description: 'Отправить уведомление о Рассрочке — маркетинг (TELEGRAM_TO_SPECIAL_MARKETING)'
+        required: false
+        type: boolean
+        default: false
+      send_english_words:
+        description: 'Отправить отчёт по английским словам (TELEGRAM_TO_SPECIAL)'
+        required: false
+        type: boolean
+        default: false
+      run_linkinator:
+        description: 'Запустить проверку ссылок (linkinator)'
+        required: false
+        type: boolean
+        default: false
+  # Allows this workflow to be called by other workflows
+  workflow_call:
+
+# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+# However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  check-pages:
+    runs-on: ubuntu-latest
+    outputs:
+      pages_enabled: ${{ steps.check-pages.outputs.pages_enabled }}
+    steps:
+      - name: Check GitHub Pages status
+        id: check-pages
+        run: |
+          PAGES_STATUS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pages" \
+            -w '%{http_code}' -o /dev/null)
+          if [ "$PAGES_STATUS" = "200" ]; then
+            echo "pages_enabled=true" >> $GITHUB_OUTPUT
+          else
+            echo "pages_enabled=false" >> $GITHUB_OUTPUT
+          fi
+
+  determine_env:
+    needs: check-pages
+    runs-on: ubuntu-latest
+    outputs:
+      env_name: ${{ steps.set_env.outputs.env_name }}
+    steps:
+      - id: set_env
+        run: |
+          PROD_BRANCHES=("main" "master" "brand" "dealer") # Bash array
+          CURRENT_BRANCH="${{ github.ref_name }}"
+          IS_PROD=false
+          for branch in "${PROD_BRANCHES[@]}"; do
+            if [[ "$CURRENT_BRANCH" == "$branch" ]]; then
+              IS_PROD=true
+              break
+            fi
+          done
+          if $IS_PROD; then
+            echo "env_name=production" >> $GITHUB_OUTPUT
+          else
+            echo "env_name=development" >> $GITHUB_OUTPUT
+          fi
+
+  # Build job
+  build:
+    needs: [check-pages, determine_env]
+    if: needs.check-pages.outputs.pages_enabled == 'true'
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+
+    # Указываете окружение и его переменные
+    environment:
+      name: ${{ needs.determine_env.outputs.env_name }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: '25'
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v5
+        with:
+          path: |
+            ~/.pnpm-store
+            node_modules
+            .pnpm-store
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      - name: Init output.txt
+        run: |
+          > output.txt
+
+      - name: Create env file
+        run: |
+          touch .env
+          echo DOMAIN=${{ vars.DOMAIN }} >> .env
+          cat .env
+
+      - name: PNPM install
+        run: |
+          npm install -g pnpm
+          pnpm install --no-frozen-lockfile
+
+      - name: Astro Build
+        run: |
+          pnpm build --outDir ./_site
+          cp ./_site/sitemap-0.xml ./_site/sitemap.xml
+
+      - name: Find English Words
+        run: |
+          pip install beautifulsoup4 --quiet
+          python3 .github/scripts/findEnglishWords.py
+        env:
+          DOMAIN: ${{ vars.DOMAIN }}
+
+      - name: Send English Words CSV to Telegram
+        if: ${{ github.event.inputs.send_english_words == 'true' }}
+        run: |
+          source .github/scripts/sh/utils.sh
+          source .github/scripts/sh/send_telegram.sh
+          CSV_FILE=$(ls tmp/notifications/english-words-*.csv 2>/dev/null | head -1)
+          if [ -n "$CSV_FILE" ]; then
+            CAPTION="Английские слова на сайте ${{ vars.DOMAIN }}"
+            send_telegram_file "${{ secrets.TELEGRAM_TOKEN }}" "${{ secrets.TELEGRAM_TO_SPECIAL }}" "$CSV_FILE" "$CAPTION"
+          else
+            echo "CSV-файл не найден, пропускаем отправку"
+          fi
+
+      - name: Set output
+        id: set_output
+        run: |
+          if [ -s output.txt ]; then
+            encoded_output=$(base64 -w 0 output.txt)
+            echo "script_output=$encoded_output" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Check notifications
+        id: check_specials
+        run: |
+          if [ -s tmp/notifications/dates.txt ]; then
+            echo "specials=$(base64 -w 0 tmp/notifications/dates.txt)" >> $GITHUB_OUTPUT
+          fi
+          if [ -s tmp/notifications/dates-marketing.txt ]; then
+            echo "specials_marketing=$(base64 -w 0 tmp/notifications/dates-marketing.txt)" >> $GITHUB_OUTPUT
+          fi
+          if [ -s tmp/notifications/rassrochka.txt ]; then
+            echo "specials_rassrochka=$(base64 -w 0 tmp/notifications/rassrochka.txt)" >> $GITHUB_OUTPUT
+          fi
+          if [ -s tmp/notifications/rassrochka-marketing.txt ]; then
+            echo "specials_rassrochka_marketing=$(base64 -w 0 tmp/notifications/rassrochka-marketing.txt)" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Upload artifact
+        # Automatically uploads an artifact from the './_site' directory by default
+        uses: actions/upload-pages-artifact@v4
+
+      - name: Create After_deploy text
+        id: after_deploy
+        run: |
+          echo text="<blockquote>After deploy: https://${{ vars.DOMAIN }}</blockquote>" >> $GITHUB_OUTPUT
+
+    outputs:
+      script_output: ${{ steps.set_output.outputs.script_output }}
+      specials: ${{ steps.check_specials.outputs.specials }}
+      specials_marketing: ${{ steps.check_specials.outputs.specials_marketing }}
+      specials_rassrochka: ${{ steps.check_specials.outputs.specials_rassrochka }}
+      specials_rassrochka_marketing: ${{ steps.check_specials.outputs.specials_rassrochka_marketing }}
+      after_deploy: ${{ steps.after_deploy.outputs.text }}
+
+  # Deployment job
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  notify_telegram_error:
+    needs: build
+    if: ${{ needs.build.outputs.script_output != '' }}
+    uses: ./.github/workflows/github-telegram.yml
+    with:
+      additional-text: |
+        ${{ needs.build.outputs.script_output }}
+    secrets:
+      TELEGRAM_TO: ${{ secrets.TELEGRAM_TO_ERROR }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+
+  notify_telegram_after_deploy:
+    needs: [build, deploy]
+    uses: ./.github/workflows/github-telegram.yml
+    with:
+      caller-id: 'after-deploy'
+      additional-text: |
+        $(echo -n '${{ needs.build.outputs.after_deploy }}' | base64)
+    secrets:
+      TELEGRAM_TO: ${{ secrets.TELEGRAM_TO_AFTER_DEPLOY }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+
+  notify_telegram_about_special:
+    needs: [build]
+    if: ${{ needs.build.outputs.specials != '' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.send_specials == 'true')) }}
+    uses: ./.github/workflows/github-telegram.yml
+    with:
+      caller-id: 'special-offers'
+      additional-text: |
+        ${{ needs.build.outputs.specials }}
+    secrets:
+      TELEGRAM_TO: ${{ secrets.TELEGRAM_TO_SPECIAL }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+
+  check_marketing_secret:
+    needs: [build]
+    if: needs.build.outputs.specials_marketing != '' || needs.build.outputs.specials_rassrochka_marketing != ''
+    runs-on: ubuntu-latest
+    outputs:
+      secret_exists: ${{ steps.check.outputs.exists }}
+    steps:
+      - name: Check if marketing telegram secret exists
+        id: check
+        run: |
+          if [ -n "${{ secrets.TELEGRAM_TO_SPECIAL_MARKETING }}" ]; then
+            echo "TELEGRAM_TO_SPECIAL_MARKETING exists"
+            echo "exists=true" >> $GITHUB_OUTPUT
+          else
+            echo "TELEGRAM_TO_SPECIAL_MARKETING does not exist"
+            echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+  notify_telegram_about_special_marketing:
+    needs: [build, check_marketing_secret]
+    if: ${{ needs.check_marketing_secret.outputs.secret_exists == 'true' && needs.build.outputs.specials_marketing != '' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.send_specials_marketing == 'true')) }}
+    uses: ./.github/workflows/github-telegram.yml
+    with:
+      caller-id: 'special-marketing'
+      include-header: false
+      additional-text: |
+        ${{ needs.build.outputs.specials_marketing }}
+    secrets:
+      TELEGRAM_TO: ${{ secrets.TELEGRAM_TO_SPECIAL_MARKETING }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+
+  notify_telegram_about_rassrochka:
+    needs: [build]
+    if: ${{ needs.build.outputs.specials_rassrochka != '' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.send_rassrochka == 'true')) }}
+    uses: ./.github/workflows/github-telegram.yml
+    with:
+      caller-id: 'rassrochka'
+      additional-text: |
+        ${{ needs.build.outputs.specials_rassrochka }}
+    secrets:
+      TELEGRAM_TO: ${{ secrets.TELEGRAM_TO_SPECIAL }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+
+  notify_telegram_about_rassrochka_marketing:
+    needs: [build, check_marketing_secret]
+    if: ${{ needs.check_marketing_secret.outputs.secret_exists == 'true' && needs.build.outputs.specials_rassrochka_marketing != '' && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.send_rassrochka_marketing == 'true')) }}
+    uses: ./.github/workflows/github-telegram.yml
+    with:
+      caller-id: 'rassrochka-marketing'
+      include-header: false
+      additional-text: |
+        ${{ needs.build.outputs.specials_rassrochka_marketing }}
+    secrets:
+      TELEGRAM_TO: ${{ secrets.TELEGRAM_TO_SPECIAL_MARKETING }}
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+
+  check_links:
+    needs: [build, deploy]
+    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_linkinator == 'true') }}
+    uses: ./.github/workflows/linkinator.yml
+    secrets: inherit
