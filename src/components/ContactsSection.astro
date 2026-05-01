@@ -1,0 +1,116 @@
+---
+const services = [
+    'Цифровая, УФ и 3D печать',
+    'Фрезеровка и лазерная резка',
+    'Изготовление наружной рекламы',
+    'Интерьерная реклама',
+    'Сувенирная продукция (мерч)',
+    'Наградная продукция',
+    'Программа «Русский стиль»',
+    'Рассчитать проект',
+    'Обсудить проект',
+    'Другое',
+];
+---
+<section id="contacts" class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl bg-gray-50 overflow-hidden shadow-2xl flex flex-col lg:flex-row">
+            <div class="lg:w-1/2 p-12 lg:p-16 bg-[#432483] text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-[#68C9F3] rounded-full blur-[80px] opacity-20 -translate-y-1/2 translate-x-1/2"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-[#ED6F17] rounded-full blur-[80px] opacity-20 translate-y-1/2 -translate-x-1/2"></div>
+
+                <div class="relative z-10">
+                    <h2 class="text-3xl font-bold mb-6">Давайте обсудим ваш проект</h2>
+                    <p class="text-gray-300 mb-12">Оставьте заявку, и мы свяжемся с вами в ближайшее время для уточнения деталей.</p>
+
+                    <div class="space-y-8">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="map-pin" class="w-5 h-5 text-[#68C9F3]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Наш офис</h4>
+                                <p class="text-gray-300 text-sm">Адыгея, пгт Яблоновский, ул.Шоссейная 71</p>
+                                <p class="text-gray-400 text-xs mt-1">Пн-Пт с 9:00 до 19:00</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="phone" class="w-5 h-5 text-[#68C9F3]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Телефон</h4>
+                                <a href="tel:+79094489068" class="text-gray-300 text-sm hover:text-white transition-colors">+7 (909) 448-90-68</a>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center shrink-0">
+                                <i data-lucide="mail" class="w-5 h-5 text-[#68C9F3]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold mb-1">Email</h4>
+                                <a href="mailto:info@dvig-ra.ru" class="text-gray-300 text-sm hover:text-white transition-colors">info@dvig-ra.ru</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-16 pt-8 border-t border-white/10">
+                        <h4 class="font-bold mb-4">Мы в соцсетях</h4>
+                        <div class="flex gap-4">
+                            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#68C9F3] hover:text-[#432483] transition-all flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#ffffff" style="opacity:1;"><path fill-rule="evenodd" d="M23.45 5.948c.166-.546 0-.948-.795-.948H20.03c-.668 0-.976.347-1.143.73c0 0-1.335 3.196-3.226 5.272c-.612.602-.89.793-1.224.793c-.167 0-.418-.191-.418-.738V5.948c0-.656-.184-.948-.74-.948H9.151c-.417 0-.668.304-.668.593c0 .621.946.765 1.043 2.513v3.798c0 .833-.153.984-.487.984c-.89 0-3.055-3.211-4.34-6.885C4.45 5.288 4.198 5 3.527 5H.9c-.75 0-.9.347-.9.73c0 .682.89 4.07 4.145 8.551C6.315 17.341 9.37 19 12.153 19c1.669 0 1.875-.368 1.875-1.003v-2.313c0-.737.158-.884.687-.884c.39 0 1.057.192 2.615 1.667C19.11 18.216 19.403 19 20.405 19h2.625c.75 0 1.126-.368.91-1.096c-.238-.724-1.088-1.775-2.215-3.022c-.612-.71-1.53-1.475-1.809-1.858c-.389-.491-.278-.71 0-1.147c0 0 3.2-4.426 3.533-5.929" clip-rule="evenodd"/></svg>
+                            </a>
+                            <a href="#" class="w-10 h-10 rounded-lg bg-white/10 hover:bg-[#0088cc] hover:text-white transition-all flex items-center justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="#FFFFFF" style="opacity:1;"><path d="m12.593 23.258l-.011.002l-.071.035l-.02.004l-.014-.004l-.071-.035q-.016-.005-.024.005l-.004.01l-.017.428l.005.02l.01.013l.104.074l.015.004l.012-.004l.104-.074l.012-.016l.004-.017l-.017-.427q-.004-.016-.017-.018m.265-.113l-.013.002l-.185.093l-.01.01l-.003.011l.018.43l.005.012l.008.007l.201.093q.019.005.029-.008l.004-.014l-.034-.614q-.005-.018-.02-.022m-.715.002a.02.02 0 0 0-.027.006l-.006.014l-.034.614q.001.018.017.024l.015-.002l.201-.093l.01-.008l.004-.011l.017-.43l-.003-.012l-.01-.01z"/><path d="M19.777 4.43a1.5 1.5 0 0 1 2.062 1.626l-2.268 13.757c-.22 1.327-1.676 2.088-2.893 1.427c-1.018-.553-2.53-1.405-3.89-2.294c-.68-.445-2.763-1.87-2.507-2.884c.22-.867 3.72-4.125 5.72-6.062c.785-.761.427-1.2-.5-.5c-2.302 1.738-5.998 4.381-7.22 5.125c-1.078.656-1.64.768-2.312.656c-1.226-.204-2.363-.52-3.291-.905c-1.254-.52-1.193-2.244-.001-2.746z"/></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:w-1/2 p-12 lg:p-16 bg-white">
+                <div id="contact-form-status" class="hidden mb-6 rounded-xl border px-4 py-3 text-sm font-medium"></div>
+                <form id="contacts-form" action="https://alexsab.ru/lead/dvig-ra/" method="post" class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-bold text-[#2B2A28] mb-2">Ваше имя</label>
+                            <input name="name" type="text" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all" placeholder="Иван Иванов">
+                        </div>
+                        <div class="col-span-2 sm:col-span-1">
+                            <label class="block text-sm font-bold text-[#2B2A28] mb-2">Телефон</label>
+                            <input name="phone" type="tel" inputmode="tel" autocomplete="tel" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all" placeholder="+7 ___ ___-__-__">
+                            <p class="error-message phone hidden mt-2 text-xs text-red-500"></p>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-[#2B2A28] mb-2">Интересующая услуга</label>
+                        <select name="service" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all text-gray-600">
+                            <option value="">Выберите услугу</option>
+                            {services.map((label) => (
+                                <option value={label}>{label}</option>
+                            ))}
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-bold text-[#2B2A28] mb-2">Комментарий</label>
+                        <textarea name="comment" rows="4" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-[#432483] focus:ring-1 focus:ring-[#432483] transition-all resize-none" placeholder="Опишите кратко вашу задачу..."></textarea>
+                    </div>
+
+                    <div class="pt-4">
+                        <button type="submit" class="w-full py-4 rounded-xl gradient-bg text-white font-bold text-lg hover:shadow-xl hover:shadow-[#ED6F17]/20 transition-all transform hover:-translate-y-1">
+                            Отправить заявку
+                        </button>
+                        <div class="mt-4 flex items-start gap-3">
+                            <input id="agree" name="agree" type="checkbox" required class="mt-0.5 h-4 w-4 rounded border-gray-300 text-[#432483] focus:ring-[#432483]">
+                            <label for="agree" class="text-xs text-gray-400 cursor-pointer">Нажимая кнопку, вы соглашаетесь с Политикой конфиденциальности</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

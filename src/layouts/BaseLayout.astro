@@ -1,0 +1,110 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+    title: string;
+    description: string;
+    canonical?: string;
+    ogTitle?: string;
+    ogDescription?: string;
+    ogImage?: string;
+    ogImageAlt?: string;
+    ogType?: string;
+}
+
+const {
+    title,
+    description,
+    canonical,
+    ogTitle,
+    ogDescription,
+    ogImage,
+    ogImageAlt = 'Рекламно-производственной фирмы Движение',
+    ogType = 'website',
+} = Astro.props;
+
+const resolvedOgTitle = ogTitle ?? title;
+const resolvedOgDescription = ogDescription ?? description;
+---
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    {ogImage && (
+        <>
+            <meta property="og:site_name" content="РПФ Движение" />
+            <meta property="og:locale" content="ru_RU" />
+            <meta property="og:type" content={ogType} />
+            <meta property="og:title" content={resolvedOgTitle} />
+            <meta property="og:description" content={resolvedOgDescription} />
+            {canonical && <meta property="og:url" content={canonical} />}
+            <meta property="og:image" content={ogImage} />
+            <meta property="og:image:type" content="image/png" />
+            <meta property="og:image:alt" content={ogImageAlt} />
+
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={resolvedOgTitle} />
+            <meta name="twitter:description" content={resolvedOgDescription} />
+            <meta name="twitter:image" content={ogImage} />
+        </>
+    )}
+
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/images/favicon/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images/favicon/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images/favicon/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/images/favicon/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/images/favicon/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/images/favicon/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/images/favicon/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/images/favicon/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/images/favicon/favicon-128.png" sizes="128x128" />
+    <meta name="application-name" content="РПФ Движение" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/images/favicon/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/images/favicon/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/images/favicon/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/images/favicon/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/images/favicon/mstile-310x310.png" />
+    <meta name="yandex-verification" content="f4b3fd5e098958b8" />
+    <meta name="google-site-verification" content="jqNHbPKukvlRuC5mRDEOo3YM0MVfYybDuqw-toFU8Ac" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+
+    <script type="text/javascript" is:inline>
+        (function(m,e,t,r,i,k,a){
+            m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+            m[i].l=1*new Date();
+            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+        })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=107152712', 'ym');
+
+        ym(107152712, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+    </script>
+</head>
+<body id="top" class="bg-white overflow-x-hidden w-full min-h-screen flex flex-col">
+    <noscript><div><img src="https://mc.yandex.ru/watch/107152712" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+    <Nav />
+
+    <slot />
+
+    <Footer />
+
+    <script>
+        import '../scripts/site.ts';
+    </script>
+</body>
+</html>

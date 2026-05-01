@@ -1,0 +1,60 @@
+@import "tailwindcss";
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #2B2A28;
+}
+
+#contacts-form {
+    scroll-margin-top: 9rem;
+}
+
+@media (max-width: 1023px) {
+    #contacts-form {
+        scroll-margin-top: 6rem;
+    }
+}
+
+.gradient-text {
+    background: linear-gradient(to right, #ED6F17);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #ED6F17, #801D81, #432483);
+}
+
+.gradient-border-hover:hover {
+    border-image: linear-gradient(to right, #ED6F17, #801D81) 1;
+}
+
+.service-card {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(12px);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #432483;
+    border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #801D81;
+}

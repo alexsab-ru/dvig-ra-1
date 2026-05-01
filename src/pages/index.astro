@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/home/Hero.astro';
+import RussianStyle from '../components/home/RussianStyle.astro';
+import Services from '../components/home/Services.astro';
+import WhyUs from '../components/home/WhyUs.astro';
+import About from '../components/home/About.astro';
+import PromoBanner from '../components/home/PromoBanner.astro';
+import Portfolio from '../components/home/Portfolio.astro';
+import DeliveryTeaser from '../components/home/DeliveryTeaser.astro';
+import ContactsSection from '../components/ContactsSection.astro';
+---
+<BaseLayout
+    title="Движение - Рекламно-производственная фирма в Краснодаре"
+    description="РПФ «Движение» в Краснодаре: собственное производство, печать, наружная и интерьерная реклама, сувениры и наградная продукция. Работаем с 2008 года."
+    canonical="https://dvig-ra.ru/"
+    ogTitle="Движение — рекламно-производственная фирма в Краснодаре"
+    ogDescription="Под ключ решаем задачи любого масштаба: производство, полиграфия, сувенирная продукция, наружная и интерьерная реклама. Собственное производство, 18+ лет на рынке."
+    ogImage="https://dvig-ra.ru/images/portfolio/dvig-ra.jpg"
+>
+    <Hero />
+    <RussianStyle />
+    <Services />
+    <WhyUs />
+    <About />
+    <PromoBanner />
+    <Portfolio />
+    <DeliveryTeaser />
+    <ContactsSection />
+</BaseLayout>

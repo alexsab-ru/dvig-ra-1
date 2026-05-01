@@ -1,0 +1,99 @@
+---
+const benefits = [
+    {
+        icon: 'layers',
+        color: '#68C9F3',
+        title: 'Широкий спектр услуг',
+        text: 'Вывески, полиграфия, таблички, стенды, сувениры под заказ, оформление фасадов, фото зон, брендирования и наградная продукция под заказ, фрезеровка и лазерная резка листовых материалов.',
+    },
+    {
+        icon: 'sparkles',
+        color: '#801D81',
+        title: 'Индивидуальный подход',
+        text: 'Воплощаем в реальность всё, что пожелаете — от идеи до воплощения.',
+    },
+    {
+        icon: 'calendar-check',
+        color: '#ED6F17',
+        title: 'Опыт с 2008 года',
+        text: 'Надежность, проверенная временем. Технологии, проверенные временем.',
+    },
+    {
+        icon: 'building-2',
+        color: '#432483',
+        title: 'Всё под одной крышей',
+        text: 'Дизайн, фрезеровка, УФ-печать, полиграфия — полный цикл производства.',
+    },
+];
+
+const equipment = [
+    'ЧПУ фрезерный станок',
+    'ЧПУ лазерный станок',
+    '3D принтеры',
+    'Струйные и цифровые принтеры',
+    'ЧПУ гибочный станок',
+    'Планшетный и рулонный плотеры',
+    'УФ принтер',
+    'Оборудование для постобработки',
+];
+---
+<section id="why-us" class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 items-start">
+            <div class="space-y-8">
+                <div>
+                    <span class="text-[#ED6F17] font-bold tracking-wider uppercase text-sm mb-2 block">Наши преимущества</span>
+                    <h2 class="text-4xl font-extrabold text-[#2B2A28] mb-6">Почему нам доверяют</h2>
+                </div>
+                <div class="p-8 rounded-3xl bg-gray-50 border-l-4 border-[#432483]">
+                    <div class="flex items-start gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-[#432483]/10 flex items-center justify-center text-[#432483] shrink-0">
+                            <i data-lucide="factory" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold text-[#2B2A28] mb-2">Собственное производство</h3>
+                            <p class="text-gray-600 leading-relaxed">Мы не перекупаем, мы делаем сами. Это гарантия качества и соблюдения сроков.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="space-y-6">
+                    {benefits.map((b) => (
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0" style={`color: ${b.color}; background-color: ${b.color}1a;`}>
+                                <i data-lucide={b.icon} class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-[#2B2A28] mb-1">{b.title}</h4>
+                                <p class="text-gray-500 text-sm">{b.text}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div class="space-y-8">
+                <div class="p-8 rounded-3xl bg-[#2B2A28] text-white relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-[#801D81] rounded-full blur-[100px] opacity-30"></div>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold mb-6 flex items-center gap-3">
+                            <i data-lucide="cog" class="w-6 h-6 text-[#68C9F3]"></i>
+                            Наше оборудование
+                        </h3>
+                        <ul class="space-y-4">
+                            {equipment.map((item) => (
+                                <li class="flex items-center gap-3 text-gray-300">
+                                    <i data-lucide="check-circle" class="w-5 h-5 text-[#68C9F3] shrink-0"></i>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+                <div class="text-center lg:text-left pt-4">
+                    <a href="#contacts-form" data-form-service="ask-about-project" class="px-8 py-4 rounded-xl gradient-bg text-white font-bold hover:shadow-xl hover:shadow-[#ED6F17]/30 transition-all">
+                        Обсудить проект
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

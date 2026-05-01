@@ -1,0 +1,74 @@
+---
+const cards = [
+    {
+        icon: 'file-image',
+        color: '#68C9F3',
+        title: 'Форматы файлов',
+        items: ['PDF (рекомендуется)', 'AI, EPS', 'TIFF, PSD', 'CDR (CorelDraw X4-X7)'],
+    },
+    {
+        icon: 'scan',
+        color: '#ED6F17',
+        title: 'Разрешение',
+        items: ['Полиграфия: 300 dpi', 'Широкоформат: 72-150 dpi', 'Наружка: 100-150 dpi', '1:1 размер в масштабе'],
+    },
+    {
+        icon: 'palette',
+        color: '#801D81',
+        title: 'Цветовая модель',
+        items: ['CMYK для печати', 'Pantone для точного цвета', 'Шрифты в кривые', 'Встроенные изображения'],
+    },
+    {
+        icon: 'scissors',
+        color: '#432483',
+        textColor: '#95D4E7',
+        title: 'Припуски и вылеты',
+        items: ['Вылеты: 3-5 мм', 'Подрезка с запасом', 'Важные элементы от края', 'Внутри 5 мм от вылета'],
+    },
+    {
+        icon: 'layers',
+        color: '#68C9F3',
+        title: 'Слои и эффекты',
+        items: ['Растрируйте эффекты', 'Без прозрачностей', 'Неразрушенные слои', 'Слои под обрезной'],
+    },
+];
+---
+<section id="requirements" class="py-24 bg-[#2B2A28] text-white relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-[#432483] rounded-full blur-[150px] opacity-20"></div>
+    <div class="absolute bottom-0 left-0 w-96 h-96 bg-[#ED6F17] rounded-full blur-[150px] opacity-10"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <span class="text-[#68C9F3] font-bold tracking-wider uppercase text-sm mb-2 block">Для клиентов</span>
+            <h2 class="text-4xl font-extrabold mb-4">Требования к макетам</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">Подготовьте ваши файлы правильно для качественной печати</p>
+            <div class="w-20 h-1.5 bg-gradient-to-r from-[#ED6F17] via-[#801D81] to-[#68C9F3] mx-auto rounded-full mt-4"></div>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {cards.map((card) => (
+                <div class="p-6 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 transition-all" style={`--card-border: ${card.color};`}>
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={`color: ${card.textColor ?? card.color}; background-color: ${card.color}33;`}>
+                        <i data-lucide={card.icon} class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">{card.title}</h3>
+                    <ul class="space-y-2 text-gray-400 text-sm">
+                        {card.items.map((item) => <li>• {item}</li>)}
+                    </ul>
+                </div>
+            ))}
+
+            <div class="p-6 rounded-2xl bg-gradient-to-br from-[#ED6F17]/20 to-[#801D81]/20 backdrop-blur-sm border border-white/10 flex flex-col justify-center items-center text-center">
+                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center text-white mb-4">
+                    <i data-lucide="help-circle" class="w-6 h-6"></i>
+                </div>
+                <h3 class="text-lg font-bold mb-2">Нужна помощь?</h3>
+                <p class="text-gray-400 text-sm mb-4">Не уверены в макете? Наши дизайнеры помогут подготовить файл правильно.</p>
+                <a href="#contacts-form" data-form-service="ask-about-project" class="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-medium transition-all flex items-center gap-2">
+                    <i data-lucide="message-square" class="w-4 h-4"></i>
+                    Консультация
+                </a>
+            </div>
+        </div>
+    </div>
+</section>

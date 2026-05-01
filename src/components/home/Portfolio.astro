@@ -1,0 +1,33 @@
+---
+const projects = [
+    { src: '/images/portfolio/dns.jpg', alt: 'Brand Identity', title: 'DND Гипер', tag: 'Вывеска' },
+    { src: '/images/portfolio/akvaider.jpg', alt: 'Brochure Design', title: 'Аквайдер', tag: 'Наружка' },
+    { src: '/images/portfolio/borsetta.jpg', alt: 'Office Branding', title: 'Borsetta', tag: 'Полное сопровождение мероприятия' },
+    { src: '/images/portfolio/aura-bohema.jpg', alt: 'Conference Materials', title: 'Aura Bohema', tag: 'Оформление офиса', wide: true },
+    { src: '/images/portfolio/sk-zik.jpg', alt: 'Mobile App Design', title: 'SK ZIK', tag: 'Оформление здания', imgClass: 'object-top' },
+];
+---
+<section id="portfolio" class="py-24 bg-[#F8FAFC]">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+            <div>
+                <span class="text-[#ED6F17] font-bold tracking-wider uppercase text-sm mb-2 block">Наши работы</span>
+                <h2 class="text-4xl font-extrabold text-[#2B2A28]">Последние проекты</h2>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((p) => (
+                <a href={p.src} target="_blank" rel="noopener noreferrer" class:list={["group relative rounded-2xl overflow-hidden cursor-pointer shadow-lg aspect-[4/3] block", p.wide && 'lg:col-span-2']}>
+                    <img src={p.src} alt={p.alt} class:list={["w-full h-full object-cover transition-transform duration-700 group-hover:scale-110", p.imgClass]} />
+                    <div class="absolute inset-0 bg-[#2B2A28]/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <div class="text-center p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                            <h3 class="text-white text-2xl font-bold mb-2">{p.title}</h3>
+                            <p class="text-[#68C9F3] font-medium">{p.tag}</p>
+                        </div>
+                    </div>
+                </a>
+            ))}
+        </div>
+    </div>
+</section>
