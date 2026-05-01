@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Requisites from '../components/delivery/Requisites.astro';
+import ContactsSection from '../components/ContactsSection.astro';
+---
+<BaseLayout
+    title="Реквизиты — РПФ Движение"
+    description="Реквизиты ООО РПФ «Движение»: ИНН, КПП, ОГРН, расчетный счет, банк и юридический адрес."
+    canonical="https://dvig-ra.ru/requisites/"
+>
+    <PageHero eyebrow="Документы" title="Реквизиты компании" description="Данные для договоров, счетов, закрывающих документов и официальной переписки." />
+    <Requisites />
+    <ContactsSection />
+</BaseLayout>

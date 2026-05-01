@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import PageHero from '../../components/PageHero.astro';
+import ContactsSection from '../../components/ContactsSection.astro';
+import { services, servicePath } from '../../data/services';
+
+export function getStaticPaths() {
+    return services.map((service) => ({
+        params: { slug: service.slug },
+        props: { service },
+    }));
+}
+
+const { service } = Astro.props;
+---
+<BaseLayout
+    title={`${service.title} — РПФ Движение`}
+    description={`${service.description} Производство рекламы в Краснодаре и Адыгее.`}
+    canonical={`https://dvig-ra.ru${servicePath(service)}`}
+>
+    <PageHero eyebrow="Услуга" title={service.title} description={service.lead} />
+
+    <section class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-[1fr_360px] gap-10 items-start">
+                <div class="space-y-8">
+                    <div class="rounded-3xl bg-gray-50 border border-gray-100 p-8 lg:p-10">
+                        <h2 class="text-3xl font-extrabold text-[#2B2A28] mb-5">Что делаем</h2>
+                        <p class="text-gray-600 leading-relaxed text-lg">{service.description}</p>
+                        <div class="mt-8 grid sm:grid-cols-2 gap-4">
+                            {service.points.map((point) => (
+                                <div class="flex gap-3 rounded-2xl bg-white border border-gray-100 p-5">
+                                    <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0" style={`color: ${service.colorText}; background-color: ${service.colorText}1a;`}>
+                                        <i data-lucide="check" class="w-5 h-5"></i>
+                                    </div>
+                                    <p class="text-sm font-medium text-[#2B2A28] leading-relaxed">{point}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div class="rounded-3xl bg-[#2B2A28] text-white p-8 lg:p-10">
+                        <h2 class="text-2xl font-bold mb-4">Как запускаем проект</h2>
+                        <div class="grid md:grid-cols-3 gap-5 text-sm text-gray-300">
+                            <div>
+                                <p class="font-bold text-white mb-2">1. Задача</p>
+                                <p>Уточняем формат, материалы, сроки, место установки или использования.</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white mb-2">2. Макет</p>
+                                <p>Проверяем файлы, готовим техническое решение и согласуем стоимость.</p>
+                            </div>
+                            <div>
+                                <p class="font-bold text-white mb-2">3. Производство</p>
+                                <p>Изготавливаем, комплектуем, доставляем и при необходимости монтируем.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="rounded-3xl bg-[#F8FAFC] border border-gray-100 p-8 lg:sticky lg:top-28">
+                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6" style={`color: ${service.colorText}; background-color: ${service.colorText}1a;`}>
+                        <i data-lucide={service.icon} class="w-7 h-7"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-[#2B2A28] mb-4">Рассчитать заказ</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">Опишите задачу, приложите вводные в комментарии, и мы подскажем оптимальный способ производства.</p>
+                    <a href="#contacts-form" data-form-service={service.key} class="inline-flex w-full items-center justify-center gap-2 rounded-xl gradient-bg px-6 py-3 font-bold text-white hover:shadow-xl hover:shadow-[#ED6F17]/20 transition-all">
+                        Оставить заявку
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </a>
+                    <a href="/requirements/" class="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-white border border-gray-200 px-6 py-3 font-bold text-[#2B2A28] hover:text-[#ED6F17] transition-colors">
+                        Требования к макетам
+                    </a>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <ContactsSection />
+</BaseLayout>

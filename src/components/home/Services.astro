@@ -1,48 +1,5 @@
 ---
-const services = [
-    {
-        key: 'digital-uv-3d',
-        title: 'Цифровая, УФ и 3D печать',
-        description: 'Высококачественная печать любой сложности: цифровая, УФ-печать на любых материалах, 3D-печать и прототипирование.',
-        icon: 'printer',
-        colorText: '#68C9F3',
-    },
-    {
-        key: 'milling-laser',
-        title: 'Фрезеровка и лазерная резка',
-        description: 'Прецизионная фрезеровка и лазерная резка листовых материалов. Гравировка на различных поверхностях.',
-        icon: 'scissors',
-        colorText: '#ED6F17',
-    },
-    {
-        key: 'outdoor-ad',
-        title: 'Изготовление наружной рекламы',
-        description: 'Вывески, объемные буквы, баннеры, лайтбоксы, штендеры и оформление фасадов от проекта до монтажа.',
-        icon: 'store',
-        colorText: '#432483',
-    },
-    {
-        key: 'interior-ad',
-        title: 'Интерьерная реклама',
-        description: 'Таблички, указатели, стенды, фотообои, холсты, постеры и оформление внутренних помещений.',
-        icon: 'image',
-        colorText: '#801D81',
-    },
-    {
-        key: 'merch',
-        title: 'Сувенирная продукция (мерч)',
-        description: 'Брендирование футболок, кружек, ручек, фото зоны и сувенирная продукция под заказ для вашего бизнеса.',
-        icon: 'shirt',
-        colorText: '#432483',
-    },
-    {
-        key: 'awards',
-        title: 'Наградная продукция',
-        description: 'Кубки, медали, статуэтки, дипломы, грамоты — изготовление наградной продукции любой сложности.',
-        icon: 'trophy',
-        colorText: '#801D81',
-    },
-];
+import { services, servicePath } from '../../data/services';
 ---
 <section id="services" class="py-24 bg-white relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -61,7 +18,7 @@ const services = [
                     </div>
                     <h3 class="text-xl font-bold mb-3 text-[#2B2A28]">{service.title}</h3>
                     <p class="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
-                    <a href="#contacts-form" data-form-service={service.key} class="inline-flex items-center font-semibold text-sm hover:translate-x-1 transition-transform" style={`color: ${service.colorText};`}>
+                    <a href={servicePath(service)} class="inline-flex items-center font-semibold text-sm hover:translate-x-1 transition-transform" style={`color: ${service.colorText};`}>
                         Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
                     </a>
                 </div>

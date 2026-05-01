@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Portfolio from '../components/home/Portfolio.astro';
+import ContactsSection from '../components/ContactsSection.astro';
+---
+<BaseLayout
+    title="Портфолио — РПФ Движение"
+    description="Примеры работ РПФ «Движение»: вывески, наружная реклама, оформление офисов, мероприятий и брендированных пространств."
+    canonical="https://dvig-ra.ru/portfolio/"
+>
+    <PageHero eyebrow="Портфолио" title="Рекламные проекты, которые уже работают" description="Показываем часть реализованных задач: от фасадных вывесок и оформления зданий до сопровождения мероприятий и интерьерного брендинга." />
+    <Portfolio />
+    <ContactsSection />
+</BaseLayout>

@@ -1,20 +1,21 @@
 ---
-const servicesLinks = [
-    { href: '/#russian-style', service: 'russian-style', label: 'Программа «Русский стиль»' },
-    { href: '/#contacts-form', service: 'digital-uv-3d', label: 'Цифровая, УФ и 3D печать' },
-    { href: '/#contacts-form', service: 'milling-laser', label: 'Фрезеровка и лазерная резка' },
-    { href: '/#contacts-form', service: 'outdoor-ad', label: 'Изготовление наружной рекламы' },
-    { href: '/#contacts-form', service: 'interior-ad', label: 'Интерьерная реклама' },
-    { href: '/#contacts-form', service: 'merch', label: 'Сувенирная продукция (мерч)' },
-    { href: '/#contacts-form', service: 'awards', label: 'Наградная продукция' },
-];
+import { services, servicePath } from '../data/services';
 
 const infoLinks = [
-    { href: '/#about', label: 'О компании' },
-    { href: '/#services', label: 'Наши услуги' },
+    { href: '/about/', label: 'О компании' },
+    { href: '/services/', label: 'Наши услуги' },
     { href: '/delivery/', label: 'Доставка и оплата' },
-    { href: '/#portfolio', label: 'Портфолио' },
-    { href: '/#contacts', label: 'Контакты' },
+    { href: '/portfolio/', label: 'Портфолио' },
+    { href: '/requirements/', label: 'Требования к макетам' },
+    { href: '/contacts/', label: 'Контакты' },
+];
+
+const documentLinks = [
+    { href: '/requisites/', label: 'Реквизиты' },
+    { href: '/privacy-policy/', label: 'Политика конфиденциальности' },
+    { href: '/personal-data-consent/', label: 'Согласие на обработку данных' },
+    { href: '/cookie-policy/', label: 'Политика cookie' },
+    { href: '/terms/', label: 'Пользовательское соглашение' },
 ];
 ---
 <footer class="bg-white border-t border-gray-100 pt-16 pb-8">
@@ -53,8 +54,8 @@ const infoLinks = [
             <div>
                 <h4 class="font-bold text-[#2B2A28] mb-6">Услуги</h4>
                 <ul class="space-y-3 text-sm text-gray-500">
-                    {servicesLinks.map((item) => (
-                        <li><a href={item.href} data-form-service={item.service} class="hover:text-[#ED6F17] transition-colors">{item.label}</a></li>
+                    {services.map((item) => (
+                        <li><a href={servicePath(item)} class="hover:text-[#ED6F17] transition-colors">{item.title}</a></li>
                     ))}
                 </ul>
             </div>
@@ -71,8 +72,9 @@ const infoLinks = [
             <div>
                 <h4 class="font-bold text-[#2B2A28] mb-6">Документы</h4>
                 <ul class="space-y-3 text-sm text-gray-500">
-                    <li><a href="#" class="hover:text-[#68C9F3] transition-colors">Реквизиты</a></li>
-                    <li><a href="#" class="hover:text-[#68C9F3] transition-colors">Политика конфиденциальности</a></li>
+                    {documentLinks.map((item) => (
+                        <li><a href={item.href} class="hover:text-[#68C9F3] transition-colors">{item.label}</a></li>
+                    ))}
                 </ul>
             </div>
         </div>

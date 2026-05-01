@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import ContactsSection from '../components/ContactsSection.astro';
+---
+<BaseLayout
+    title="Контакты — РПФ Движение"
+    description="Контакты РПФ «Движение»: телефон, email, адрес офиса и форма заявки на производство рекламной продукции."
+    canonical="https://dvig-ra.ru/contacts/"
+>
+    <PageHero eyebrow="Контакты" title="Обсудим ваш проект" description="Позвоните, напишите или оставьте заявку. Уточним задачу, сроки, материалы и предложим рабочий вариант производства." />
+    <ContactsSection />
+</BaseLayout>

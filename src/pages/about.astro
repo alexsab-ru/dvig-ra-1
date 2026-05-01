@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import About from '../components/home/About.astro';
+import ContactsSection from '../components/ContactsSection.astro';
+---
+<BaseLayout
+    title="О компании — РПФ Движение"
+    description="РПФ «Движение» — рекламно-производственная компания полного цикла в Краснодаре и Адыгее. Собственное производство, команда технологов, дизайнеров и монтажников."
+    canonical="https://dvig-ra.ru/about/"
+>
+    <PageHero eyebrow="О компании" title="Движение — производство рекламы полного цикла" description="С 2008 года помогаем бизнесу решать задачи в наружной и интерьерной рекламе, печати, сувенирной и наградной продукции." />
+    <About />
+    <ContactsSection />
+</BaseLayout>

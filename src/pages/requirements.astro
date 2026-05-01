@@ -1,0 +1,15 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+import Requirements from '../components/delivery/Requirements.astro';
+import ContactsSection from '../components/ContactsSection.astro';
+---
+<BaseLayout
+    title="Требования к макетам — РПФ Движение"
+    description="Требования к макетам для печати, резки, фрезеровки и изготовления рекламной продукции в РПФ «Движение»."
+    canonical="https://dvig-ra.ru/requirements/"
+>
+    <PageHero eyebrow="Для клиентов" title="Требования к макетам" description="Собрали основные параметры файлов, чтобы печать, резка и производство прошли без задержек и переделок." />
+    <Requirements />
+    <ContactsSection />
+</BaseLayout>
