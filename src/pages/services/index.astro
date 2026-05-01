@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import PageHero from '../../components/PageHero.astro';
 import ContactsSection from '../../components/ContactsSection.astro';
-import { services, servicePath } from '../../data/services';
+import Services from '../../components/home/Services.astro';
 ---
 <BaseLayout
     title="Услуги — РПФ Движение"
@@ -11,25 +11,6 @@ import { services, servicePath } from '../../data/services';
 >
     <PageHero eyebrow="Услуги" title="Производство рекламы под задачи бизнеса" description="Берем проект от идеи и макета до изготовления, доставки и монтажа. Работаем с наружной и интерьерной рекламой, печатью, мерчем и нестандартными изделиями." />
 
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {services.map((service) => (
-                    <a href={servicePath(service)} class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl border border-transparent hover:border-gray-100 relative overflow-hidden" style={`--service-shadow: ${service.colorText}1a;`}>
-                        <div class="absolute top-0 right-0 w-24 h-24 opacity-5 rounded-bl-full transition-all group-hover:scale-150" style={`background-color: ${service.colorText};`}></div>
-                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300" style={`color: ${service.colorText}; background-color: ${service.colorText}1a;`}>
-                            <i data-lucide={service.icon} class="w-7 h-7"></i>
-                        </div>
-                        <h2 class="text-xl font-bold mb-3 text-[#2B2A28]">{service.title}</h2>
-                        <p class="text-sm text-gray-500 leading-relaxed mb-5">{service.description}</p>
-                        <span class="inline-flex items-center font-semibold text-sm group-hover:translate-x-1 transition-transform" style={`color: ${service.colorText};`}>
-                            Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
-                        </span>
-                    </a>
-                ))}
-            </div>
-        </div>
-    </section>
-
+    <Services showHeader={false} sectionClass="py-20 bg-white" cardsAreLinks />
     <ContactsSection />
 </BaseLayout>

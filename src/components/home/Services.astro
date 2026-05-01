@@ -1,27 +1,55 @@
 ---
 import { services, servicePath } from '../../data/services';
+
+interface Props {
+    showHeader?: boolean;
+    sectionClass?: string;
+    cardsAreLinks?: boolean;
+}
+
+const {
+    showHeader = true,
+    sectionClass = 'py-24 bg-white relative',
+    cardsAreLinks = false,
+} = Astro.props;
 ---
-<section id="services" class="py-24 bg-white relative">
+<section id="services" class={sectionClass}>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <h2 class="text-4xl font-extrabold text-[#2B2A28] mb-4">Наши услуги</h2>
-            <div class="w-20 h-1.5 gradient-bg mx-auto rounded-full"></div>
-            <p class="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">Комплексные решения для вашего бизнеса от профессионалов с собственным производством</p>
-        </div>
+        {showHeader && (
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-extrabold text-[#2B2A28] mb-4">Наши услуги</h2>
+                <div class="w-20 h-1.5 gradient-bg mx-auto rounded-full"></div>
+                <p class="mt-6 text-xl text-gray-600 max-w-2xl mx-auto">Комплексные решения для вашего бизнеса от профессионалов с собственным производством</p>
+            </div>
+        )}
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {services.map((service) => (
-                <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl border border-transparent hover:border-gray-100 relative overflow-hidden" style={`--service-shadow: ${service.colorText}1a;`}>
-                    <div class="absolute top-0 right-0 w-24 h-24 opacity-5 rounded-bl-full transition-all group-hover:scale-150" style={`background-color: ${service.colorText};`}></div>
-                    <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300" style={`color: ${service.colorText}; background-color: ${service.colorText}1a;`}>
-                        <i data-lucide={service.icon} class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-[#2B2A28]">{service.title}</h3>
-                    <p class="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
-                    <a href={servicePath(service)} class="inline-flex items-center font-semibold text-sm hover:translate-x-1 transition-transform" style={`color: ${service.colorText};`}>
-                        Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                cardsAreLinks ? (
+                    <a href={servicePath(service)} class="service-card group block p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl border border-transparent hover:border-gray-100 relative overflow-hidden" style={`--service-shadow: ${service.colorText}1a;`}>
+                        <div class="absolute top-0 right-0 w-24 h-24 opacity-5 rounded-bl-full transition-all group-hover:scale-150" style={`background-color: ${service.colorText};`}></div>
+                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300" style={`color: ${service.colorText}; background-color: ${service.colorText}1a;`}>
+                            <i data-lucide={service.icon} class="w-7 h-7"></i>
+                        </div>
+                        <h2 class="text-xl font-bold mb-3 text-[#2B2A28]">{service.title}</h2>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-5">{service.description}</p>
+                        <span class="inline-flex items-center font-semibold text-sm group-hover:translate-x-1 transition-transform" style={`color: ${service.colorText};`}>
+                            Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </span>
                     </a>
-                </div>
+                ) : (
+                    <div class="service-card group p-8 rounded-3xl bg-gray-50 hover:bg-white hover:shadow-2xl border border-transparent hover:border-gray-100 relative overflow-hidden" style={`--service-shadow: ${service.colorText}1a;`}>
+                        <div class="absolute top-0 right-0 w-24 h-24 opacity-5 rounded-bl-full transition-all group-hover:scale-150" style={`background-color: ${service.colorText};`}></div>
+                        <div class="w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-colors duration-300" style={`color: ${service.colorText}; background-color: ${service.colorText}1a;`}>
+                            <i data-lucide={service.icon} class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3 text-[#2B2A28]">{service.title}</h3>
+                        <p class="text-sm text-gray-500 leading-relaxed mb-4">{service.description}</p>
+                        <a href={servicePath(service)} class="inline-flex items-center font-semibold text-sm hover:translate-x-1 transition-transform" style={`color: ${service.colorText};`}>
+                            Подробнее <i data-lucide="chevron-right" class="w-4 h-4 ml-1"></i>
+                        </a>
+                    </div>
+                )
             ))}
         </div>
     </div>
