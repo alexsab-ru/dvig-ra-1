@@ -4,7 +4,7 @@ import robots from "astro-robots";
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-	site: 'https://dvig-ra.ru',
+	site: 'https://www.dvig-ra.ru',
 	output: 'static',
 	base: "/",
 	vite: {

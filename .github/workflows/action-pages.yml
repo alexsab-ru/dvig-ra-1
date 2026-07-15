@@ -76,6 +76,29 @@ jobs:
             echo "pages_enabled=false" >> $GITHUB_OUTPUT
           fi
 
+  # Выбор целей деплоя по переменным репозитория:
+  #   DEPLOY_TO_PAGES — деплой в GitHub Pages (по умолчанию true, отключается значением 'false')
+  #   DEPLOY_TO_YC    — деплой в Yandex Object Storage (включается значением 'true', нужен YC_BUCKET)
+  determine_targets:
+    needs: check-pages
+    runs-on: ubuntu-latest
+    outputs:
+      deploy_pages: ${{ steps.set_targets.outputs.deploy_pages }}
+      deploy_yc: ${{ steps.set_targets.outputs.deploy_yc }}
+    steps:
+      - id: set_targets
+        run: |
+          if [ "${{ needs.check-pages.outputs.pages_enabled }}" = "true" ] && [ "${{ vars.DEPLOY_TO_PAGES }}" != "false" ]; then
+            echo "deploy_pages=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy_pages=false" >> $GITHUB_OUTPUT
+          fi
+          if [ "${{ vars.DEPLOY_TO_YC }}" = "true" ] && [ -n "${{ vars.YC_BUCKET }}" ]; then
+            echo "deploy_yc=true" >> $GITHUB_OUTPUT
+          else
+            echo "deploy_yc=false" >> $GITHUB_OUTPUT
+          fi
+
   determine_env:
     needs: check-pages
     runs-on: ubuntu-latest
@@ -101,8 +124,8 @@ jobs:
 
   # Build job
   build:
-    needs: [check-pages, determine_env]
-    if: needs.check-pages.outputs.pages_enabled == 'true'
+    needs: [check-pages, determine_env, determine_targets]
+    if: needs.determine_targets.outputs.deploy_pages == 'true' || needs.determine_targets.outputs.deploy_yc == 'true'
     concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
 
@@ -131,6 +154,7 @@ jobs:
             ${{ runner.os }}-pnpm-
 
       - name: Setup Pages
+        if: needs.determine_targets.outputs.deploy_pages == 'true'
         id: pages
         uses: actions/configure-pages@v5
 
@@ -200,7 +224,16 @@ jobs:
 
       - name: Upload artifact
         # Automatically uploads an artifact from the './_site' directory by default
+        if: needs.determine_targets.outputs.deploy_pages == 'true'
         uses: actions/upload-pages-artifact@v4
+
+      - name: Upload artifact for Yandex Cloud
+        if: needs.determine_targets.outputs.deploy_yc == 'true'
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: ./_site
+          retention-days: 1
 
       - name: Create After_deploy text
         id: after_deploy
@@ -217,7 +250,8 @@ jobs:
 
   # Deployment job
   deploy:
-    needs: build
+    needs: [build, determine_targets]
+    if: needs.determine_targets.outputs.deploy_pages == 'true'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -226,6 +260,32 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+
+  # Деплой в Yandex Object Storage (бакет со статик-хостингом)
+  deploy_yc:
+    needs: [build, determine_targets]
+    if: needs.determine_targets.outputs.deploy_yc == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: yandex-cloud
+      url: https://${{ vars.YC_BUCKET }}
+    steps:
+      - name: Download site artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: site-dist
+          path: _site
+
+      - name: Sync to Yandex Object Storage
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.YC_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.YC_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: ru-central1
+          AWS_EC2_METADATA_DISABLED: 'true'
+        run: |
+          aws s3 sync ./_site "s3://${{ vars.YC_BUCKET }}" \
+            --endpoint-url https://storage.yandexcloud.net \
+            --delete
 
   notify_telegram_error:
     needs: build
@@ -239,7 +299,8 @@ jobs:
       TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
 
   notify_telegram_after_deploy:
-    needs: [build, deploy]
+    needs: [build, deploy, deploy_yc]
+    if: ${{ !cancelled() && (needs.deploy.result == 'success' || needs.deploy_yc.result == 'success') }}
     uses: ./.github/workflows/github-telegram.yml
     with:
       caller-id: 'after-deploy'
@@ -318,7 +379,7 @@ jobs:
       TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
 
   check_links:
-    needs: [build, deploy]
-    if: ${{ github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_linkinator == 'true') }}
+    needs: [build, deploy, deploy_yc]
+    if: ${{ !cancelled() && (needs.deploy.result == 'success' || needs.deploy_yc.result == 'success') && (github.event_name == 'schedule' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_linkinator == 'true')) }}
     uses: ./.github/workflows/linkinator.yml
     secrets: inherit

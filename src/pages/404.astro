@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PageHero from '../components/PageHero.astro';
+---
+<BaseLayout
+    title="Страница не найдена — РПФ Движение"
+    description="Страница не найдена. Возможно, она была перемещена или удалена."
+>
+    <PageHero eyebrow="Ошибка 404" title="Страница не найдена" description="Возможно, страница была перемещена или удалена. Вернитесь на главную или свяжитесь с нами — поможем найти нужную информацию." />
+    <section class="mx-auto max-w-6xl px-4 pb-16 text-center">
+        <a href="/" class="inline-block rounded-full bg-zinc-900 px-8 py-3 text-white transition hover:bg-zinc-700">На главную</a>
+    </section>
+</BaseLayout>
