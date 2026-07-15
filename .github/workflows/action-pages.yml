@@ -170,7 +170,7 @@ jobs:
 
       - name: PNPM install
         run: |
-          npm install -g pnpm
+          npm install -g pnpm@11
           pnpm install --no-frozen-lockfile
 
       - name: Astro Build
